@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Money Tracker</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background:url('https://w0.peakpx.com/wallpaper/890/989/HD-wallpaper-indian-rupee-symbol-currency-sign-indian-rupee-white-3d-indian-rupee-sign-indian-rupee-currency-white-background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      h1, h2 {
+        text-align: center;
+      }
+      /* form{
+        border: 1px solid black;
+      } */
+      form label {
+        padding-left: 15%;
+        /* padding-right: ; */
+      }
+
+      
+
+      form button {
+        background-color: green;
+        color: white;
+        padding: 5px;
+      }
+
+      table {
+        width: 100%;
+        /* border-collapse: collapse; */
+        margin: 20px 0;
+        background-color: white;
+      }
+
+      table, th, td {
+        border: 1px solid black;
+      }
+
+      th, td {
+        padding: 10px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Money Tracker</h1>
+    <form action="/add" method="POST">
+      <label for="type">Type:</label>
+      <select name="type" id="type" required>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <label for="amount">Amount:</label>
+      <input type="number" name="amount" id="amount" required />
+      <label for="description">Description:</label>
+      <input type="text" name="description" id="description" required /><br>
+      <center><button type="submit">Add Transaction</button></center>
+    </form>
+
+    <h2>Transactions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% transactions.forEach(transaction => { %>
+        <tr>
+          <td><%= transaction.date.toDateString() %></td>
+          <td><%= transaction.type %></td>
+          <td>₹<%= transaction.amount %></td>
+          <td><%= transaction.description %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>
